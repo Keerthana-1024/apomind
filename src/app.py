@@ -2,16 +2,17 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import mysql.connector
 import subprocess
-
+import os
+from dotenv import load_dotenv
 app = Flask(__name__)
 CORS(app)
-
+load_dotenv()
 # ✅ Configure MySQL connection
 db_config = {
-    "host": "localhost",
-    "user": "root",
-    "password": "Aji2611#",
-    "database": "Apomind"
+    "host": os.getenv("HOST") ,
+    "user": os.getenv("USER") ,
+    "password":os.getenv("PASSWD")  ,
+    "database":os.getenv("DATABASE")  
 }
 
 @app.route("/analyze-thinking", methods=["POST"])
